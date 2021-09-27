@@ -20,6 +20,7 @@
   "homepage": "https://github.com/schollsebastian/MQTT-Home#readme",
   "dependencies": {
     "dotenv": "^10.0.0",
+    "mongodb": "^4.1.2",
     "mqtt": "^4.2.8"
   },
   "devDependencies": {
