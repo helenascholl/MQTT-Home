@@ -6,7 +6,11 @@ export default class MongoDb {
   private _db: Db | null = null;
 
   constructor(db: string) {
-    this.client = new MongoClient('mongodb://mongo');
+    const url = process.env['NODE_ENV'] === 'production' ?
+      'mongodb://mongo' :
+      'mongodb://localhost';
+
+    this.client = new MongoClient(url);
 
     this.client.connect()
       .then(() => {
