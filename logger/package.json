@@ -18,6 +18,10 @@
     "url": "https://github.com/schollsebastian/MQTT-Home/issues"
   },
   "homepage": "https://github.com/schollsebastian/MQTT-Home#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "mqtt": "^4.2.8"
+  },
   "devDependencies": {
     "@types/node": "^16.10.1",
     "@typescript-eslint/eslint-plugin": "^4.32.0",
