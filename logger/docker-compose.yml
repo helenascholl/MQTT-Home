@@ -6,6 +6,8 @@ services:
     restart: always
     environment:
       NODE_ENV: production
+    networks:
+      - mqtt-home
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
@@ -14,6 +16,8 @@ services:
   mongo:
     image: mongo:5.0.3
     restart: always
+    networks:
+      - mqtt-home
     volumes:
       - mongo-data:/data/db
 
@@ -22,9 +26,15 @@ services:
     restart: always
     ports:
       - 8081:8081
+    networks:
+      - mqtt-home
     environment:
       ME_CONFIG_BASICAUTH_USERNAME: ${MONGO_EXPRESS_USERNAME}
       ME_CONFIG_BASICAUTH_PASSWORD: ${MONGO_EXPRESS_PASSWORD}
 
 volumes:
   mongo-data:
+
+networks:
+  mqtt-home:
+    external: true

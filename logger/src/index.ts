@@ -6,7 +6,11 @@ dotenv.config();
 
 const mongo = new MongoDb('logger');
 
-const client = mqtt.connect(`mqtt://${process.env['MQTT_BROKER_HOSTNAME']}`, { clientId: 'logger' });
+const url = process.env['NODE_ENV'] === 'production' ?
+  'mqtt://mqtt' :
+  `mqtt://${process.env['MQTT_BROKER_HOSTNAME']}`;
+
+const client = mqtt.connect(url, { clientId: 'logger' });
 
 client.on('connect', () => {
   console.log('Connected to MQTT Broker');
