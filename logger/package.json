@@ -1,0 +1,31 @@
+{
+  "name": "logger",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "node dist/index.js",
+    "start:dev": "cross-env NODE_ENV=development nodemon --watch src src/index.ts",
+    "build": "tsc",
+    "lint": "eslint 'src/**/*.ts'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schollsebastian/MQTT-Home.git"
+  },
+  "author": "Sebastian Scholl <scholl.sebastian@gmx.at> (https://www.schollsebastian.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/schollsebastian/MQTT-Home/issues"
+  },
+  "homepage": "https://github.com/schollsebastian/MQTT-Home#readme",
+  "devDependencies": {
+    "@types/node": "^16.10.1",
+    "@typescript-eslint/eslint-plugin": "^4.32.0",
+    "@typescript-eslint/parser": "^4.32.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.32.0",
+    "nodemon": "^2.0.13",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
+  }
+}
