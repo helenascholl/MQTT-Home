@@ -12,3 +12,4 @@ services:
 
 networks:
   mqtt-home:
+    external: true
