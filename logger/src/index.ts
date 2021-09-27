@@ -1,20 +1,28 @@
 import mqtt from 'mqtt';
 import dotenv from 'dotenv';
+import MongoDb from './db';
 
 dotenv.config();
 
-const mqttClient = mqtt.connect(`mqtt://${process.env['MQTT_BROKER_HOSTNAME']}`, { clientId: 'logger' });
+const mongo = new MongoDb('logger');
 
-mqttClient.on('connect', () => {
+const client = mqtt.connect(`mqtt://${process.env['MQTT_BROKER_HOSTNAME']}`, { clientId: 'logger' });
+
+client.on('connect', () => {
   console.log('Connected to MQTT Broker');
 
-  mqttClient.subscribe('#', error => {
+  client.subscribe('#', error => {
     if (error) {
       console.error(error);
     }
   });
 });
 
-mqttClient.on('message', (topic, message) => {
+client.on('message', (topic, message) => {
   console.log(topic, message.toString());
+  mongo.db?.collection('mqtt').insertOne({
+    timestamp: new Date().getTime(),
+    topic: topic,
+    message: message.toString()
+  });
 });
