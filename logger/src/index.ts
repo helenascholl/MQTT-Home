@@ -19,10 +19,14 @@ client.on('connect', () => {
 });
 
 client.on('message', (topic, message) => {
-  console.log(topic, message.toString());
+  const currentDate = new Date();
+  const messageString = message.toString();
+
   mongo.db?.collection('mqtt').insertOne({
-    timestamp: new Date().getTime(),
+    timestamp: currentDate.getTime(),
     topic: topic,
-    message: message.toString()
+    message: messageString
   });
+
+  console.log(`${currentDate.toISOString()} Topic: ${topic} - Message: '${messageString}'`);
 });
